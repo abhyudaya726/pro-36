@@ -1,48 +1,39 @@
+  
 class Food {
-    constructor(foodS){
-        this.image = loadImage("Milk.png");
-        this.foodS = foodS;        
-        this.lastFed = lastFed;   
-    }
+  constructor(){
+  this.foodStock=0;
+  this.image=loadImage('images/Milk.png');
+  }
+
+ updateFoodStock(foodStock){
+  this.foodStock=foodStock;
+ }
+
+ deductFood(){
+   if(this.foodStock>0){
+    this.foodStock=this.foodStock-1;
+   }
+  }
+
+  getFoodStock(){
+    return this.foodStock;
+  }
+
+  display(){
+    var x=80,y=100;
     
-    getFoodStock(){      
-        return foodS;
-    }
-    updateFoodStock(x){
-        
-        if(x <= 0){
-            x=0;
-        }else{
-            x=x-1;
+    imageMode(CENTER);
+ 
+    
+    if(this.foodStock!=0){
+      for(var i=0;i<this.foodStock;i++){
+        if(i%10==0){
+          x=80;
+          y=y+50;
         }
-        foodS = x;
-          
+        image(this.image,x,y,50,50);
+        x=x+30;
+      }
     }
-    deductFood(){
-        if(foodS > 0){
-            foodS = foodS -1;
-        } 
-    }
-    getFedtime(){
-        return lastFed;
-    }
-    display(){ 
-        var x=700,y=100; 
-       
-        if(foodS!=0){ 
-            for(var i=0;i<foodS;i++){
-                 if(i%10==0){ 
-                    x=80; 
-                    y=y+50; 
-                } 
-                image(this.image,x,y,50,50); 
-                x=x+30;
-            }
-        }
-    }             
-        
-
-
-
-
+  }
 }
